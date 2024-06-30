@@ -1,2 +1,1 @@
-# Project-2
- Personal Finance Management APP
+# Personal Finance Management System
