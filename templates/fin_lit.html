@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <title>Document</title>
+
+    <style>
+        .icon {
+          display: flex;
+          flex-direction: row;
+      }
+    
+      .icon img {
+          margin-left: 50vw;
+      }
+    
+      .icon a {
+          text-decoration: none;
+          color: black;
+          font-size: 1.2rem;
+          font-weight: bolder;
+      }
+
+      .card {
+        padding: 10px;
+        transition: transform .8s;
+        margin: 25px;
+        float: left;
+    }
+    
+    .card img {
+      width: 10vw;
+    }
+    
+    .card:hover {
+        transform: scale(1.1);
+    }
+      </style>
+
+</head>
+<body>
+    
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Navbar</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active links" aria-current="page" href="{{url_for('home_page')}}">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link links" href="{{url_for('expense_tracker')}}">Expense</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link links" href="{{url_for('portfolio_page')}}">Portfolio</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link links" href="{{url_for('invest_page')}}">Investment</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link links" href="{{url_for('financial_literacy')}}">Financial Literacy</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link links" href="{{url_for('wallet')}}">Wallet</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link links" href="{{url_for('wallet_dashboard')}}">Wallet Dashboard</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link links">{{current_user.username}}</a>
+              </li>
+              <li class="nav-item icon">
+                <li class="icon">
+                    <img src="{{url_for('static', filename='images/profile.png')}}" alt="" width="50px" height="50px">
+                    <a href="{{url_for('profile_page')}}">Profile</a>
+                </li>
+              </li>
+            </ul>
+          </div>
+        </div>
+    </nav>
+
+    <div id="box" style="display: flex;">
+
+        <div class="card mt-5 mx-5" style="width: 18rem;">
+            <!-- <img src="/static\Images\video.png" class="card-img-top icon"> -->
+            <img src="{{url_for('static', filename='images/budget.png')}}" class="card-img-top icon">
+            <div class="card-body">
+                <h5 class="card-title">Budgeting</h5>
+                <p class="card-text">The term budget refers to an estimation of revenue and expenses over a specified future period of time and is usually compiled and re-evaluated on a periodic basis.</p>
+                <a href="" class="btn btn-success">Visit</a>
+            </div>
+        </div>
+
+        <div class="card mt-5" style="width: 18rem;">
+            <!-- <img src="/static\Images\video.png" class="card-img-top icon"> -->
+            <img src="{{url_for('static', filename='images/stocks.png')}}" class="card-img-top icon">
+            <div class="card-body">
+                <h5 class="card-title">Mutual Funds</h5>
+                <p class="card-text">A mutual fund is a professionally managed investment fund that pools money from many investors to purchase securities.</p>
+                <a href="#" class="btn btn-success">Visit</a>
+            </div>
+        </div>
+
+        <div class="card mt-5" style="width: 18rem;">
+            <!-- <img src="/static\Images\video.png" class="card-img-top icon"> -->
+            <img src="{{url_for('static', filename='images/speculate.png')}}" class="card-img-top icon">
+            <div class="card-body">
+                <h5 class="card-title">Finance</h5>
+                <p class="card-text">Finance is the study and discipline of money, currency and capital assets. It is related to, but not synonymous with economics,which is the study of production, distribution, and consumption of money, assets, goods and services (the discipline of financial economics bridges the two)..</p>
+                <a href="#" class="btn btn-success">Visit</a>
+            </div>
+        </div>
+
+        <div class="card mt-5" style="width: 18rem;">
+            <!-- <img src="/static\Images\video.png" class="card-img-top icon"> -->
+            <img src="{{url_for('static', filename='images/save-money.png')}}" class="card-img-top icon">
+            <div class="card-body">
+                <h5 class="card-title">Insurance</h5>
+                <p class="card-text">Insurance is a means of protection from financial loss in which, in exchange for a fee, a party agrees to compensate another party in the event of a certain loss, damage, or injury. It is a form of risk management, primarily used to hedge against the risk of a contingent or uncertain loss.</p>
+                <a href="#" class="btn btn-success">Visit</a>
+            </div>
+        </div>
+
+        <div class="card mt-5" style="width: 18rem;">
+            <!-- <img src="/static\Images\video.png" class="card-img-top icon"> -->
+            <img src="{{url_for('static', filename='images/save-money.png')}}" class="card-img-top icon">
+            <div class="card-body">
+                <h5 class="card-title">Government Schemes</h5>
+                <p class="card-text">Thus, PMJDY offers unbanked persons easy access to banking services and awareness about financial products through financial literacy programme</p>
+                <a href="#" class="btn btn-success">Visit</a>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+</body>
+</html>

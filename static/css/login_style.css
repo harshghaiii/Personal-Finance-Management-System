@@ -1,0 +1,84 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+#body {
+    display: flex;
+}
+
+#left-section {
+    width: 65%;
+    height: 99.5vh;
+}
+
+#right-section {
+    width: 35%;
+    height: 99.9vh;
+    border-radius: 5px;
+    background-image: linear-gradient(#17B169,#4FFFB0, #20B2AA);
+}
+
+#navbar {
+    display: flex;
+}
+
+#navbar h1 {
+    color: grey;
+    margin-left: 1vw;
+    margin-top: 3vh;
+    font-size: 2.5rem;
+    font-family: 'Rubik', sans-serif;
+}
+
+#login-form {
+    margin: auto;
+    width: 50%;
+    margin-top: 10vh;
+}
+
+#login-form h1 {
+   margin-left: 5vw;
+   font-family: 'Noto Serif', serif;
+   font-size: 3rem;
+   color: rgb(94, 93, 93);
+}
+
+.form {
+    margin-top: 4vh;
+    border-radius: 20px;
+    height: 8vh;
+    font-size: 1.7rem;
+}
+
+.submit-btn {
+    font-size: 1.8rem;
+    margin-top: 2vh;
+    margin-left: 13vw;
+    padding-left: 1vw;
+    padding-right: 1vw;
+    border-radius: 10px;
+}
+
+#text {
+    margin-top: 30vh;
+}
+
+#text h1 {
+    color: white;
+    font-family: cursive;
+    font-size: 3rem;
+    margin-left: 10vw;
+}
+
+#text p {
+    color: white;
+    font-size: 2rem;
+    margin-left: 2vw;
+}
+
+#text a {
+    margin-left: 13vw;
+    margin-top: -2vh;
+    font-size: 1.5rem;
+}

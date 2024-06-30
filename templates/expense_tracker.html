@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <title>Document</title>
+
+  <style>
+    .icon {
+      display: flex;
+      flex-direction: row;
+  }
+
+  .icon img {
+      margin-left: 30vw;
+  }
+
+  .icon a {
+      text-decoration: none;
+      color: black;
+      font-size: 1.2rem;
+      font-weight: bolder;
+  }
+
+  #button {
+    margin: 20px;
+}
+
+.icon {
+    height: 20%;
+    width: 20%;
+}
+
+.boxhi {
+    display: flex;
+}
+
+.card {
+    padding: 10px;
+    transition: transform .8s;
+    margin: 25px;
+    float: left;
+}
+
+.card img {
+  width: 10vw;
+}
+
+.card:hover {
+    transform: scale(1.1);
+}
+
+.add {
+    margin-left: 42px;
+}
+  </style>
+
+</head>
+<body>
+    
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Navbar</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active links" aria-current="page" href="{{url_for('home_page')}}">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link links" href="{{url_for('expense_tracker')}}">Expense</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link links" href="{{url_for('portfolio_page')}}">Portfolio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link links" href="{{url_for('invest_page')}}">Investment</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link links" href="{{url_for('financial_literacy')}}">Financial Literacy</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link links" href="{{url_for('wallet')}}">Wallet</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link links" href="{{url_for('wallet_dashboard')}}">Wallet Dashboard</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link links">{{current_user.username}}</a>
+          </li>
+          <li class="nav-item icon">
+            <li class="icon">
+                <img src="{{url_for('static', filename='images/profile.png')}}" alt="" width="50px" height="50px">
+                <a href="{{url_for('profile_page')}}">Profile</a>
+            </li>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+    <a class="btn btn-success mt-5" href="{{url_for('add_expense')}}">Add Expense</a>
+
+    <div id="boxhi">
+
+      <div class="card" style="width: 18rem;">
+        <!-- <img src="/static\Images\video.png" class="card-img-top icon"> -->
+        <img src="{{url_for('static', filename='images/food.png')}}" class="card-img-top icon">
+        <div class="card-body">
+            <h5 class="card-title">Grocery</h5>
+            <p class="card-text">&#8377;{{grocery_expense}}</p>
+            <a href="#" class="btn btn-primary">Add Expense</a>
+
+        </div>
+    </div>
+
+    <div class="card" style="width: 18rem;">
+      <!-- <img src="/static\Images\fashion.png" class="card-img-top icon"> -->
+      <img src="{{url_for('static', filename='images/fashion.png')}}" class="card-img-top icon">
+      <div class="card-body">
+          <h5 class="card-title">Clothing</h5>
+          <p class="card-text">&#8377;{{clothes_expense}}</p>
+          <a href="#" class="btn btn-primary">Add Expense</a>
+
+      </div>
+  </div>
+
+      <div class="card" style="width: 18rem;">
+          <!-- <img src="/static\Images\fast-food.png" class="card-img-top icon"> -->
+          <img src="{{url_for('static', filename='images/fast-food.png')}}" class="card-img-top icon">
+          <div class="card-body">
+              <h5 class="card-title">Food &amp; Beverages</h5>
+              <p class="card-text">&#8377;{{food_expense}}</p>
+              <a href="#" class="btn btn-primary">Add Expense</a>
+
+          </div>
+      </div>
+
+      
+
+      <div class="card" style="width: 18rem;">
+          <!-- <img src="/static\Images\management.png" class="card-img-top icon"> -->
+          <img src="{{url_for('static', filename='images/expenses.png')}}" class="card-img-top icon">
+          <div class="card-body">
+              <h5 class="card-title">Others</h5>
+              <p class="card-text">&#8377;{{others_expense}}</p>
+              <a href="#" class="btn btn-primary">Add Expense</a>
+
+          </div>
+      </div>
+  </div>
+
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+    <div id="piechart" style="width: 900px; height: 500px;"></div>
+
+    {% if sum_of_expense != 0 %}
+
+        {% if ((grocery_expense/sum_of_expense)*100) > min_per %}
+            <div class="alert alert-danger" role="alert">
+                Your grocery expense is more then 40% of your entire portfolio
+            </div>
+        {% endif %}
+        {% if ((clothes_expense/sum_of_expense)*100) > min_per %}
+            <div class="alert alert-danger" role="alert">
+                Your clothes expense is more then 40% of your entire portfolio
+            </div>
+        {% endif %}
+        {% if ((food_expense/sum_of_expense)*100) > min_per %}
+            <div class="alert alert-danger" role="alert">
+                Your food expense is more then 40% of your entire portfolio
+            </div>
+        {% endif %}
+        {% if ((others_expense/sum_of_expense)*100) > min_per %}
+            <div class="alert alert-danger" role="alert">
+                Your other expense is more then 40% of your entire portfolio
+            </div>
+        {% endif %}
+
+
+        {% if ((grocery_expense/sum_of_expense)*100) < 10 %}
+            <div class="alert alert-success" role="alert">
+                Great! Your grocery expense is less then 10% of your entire portfolio
+            </div>
+        {% endif %}
+        {% if ((clothes_expense/sum_of_expense)*100) < 10 %}
+            <div class="alert alert-success" role="alert">
+                Great! Your clothes expense is less then 10% of your entire portfolio
+            </div>
+        {% endif %}
+        {% if ((food_expense/sum_of_expense)*100) < 10 %}
+            <div class="alert alert-success" role="alert">
+                Great! Your food expense is less then 10% of your entire portfolio
+            </div>
+        {% endif %}
+        {% if ((others_expense/sum_of_expense)*100) < 10 %}
+            <div class="alert alert-success" role="alert">
+                Great! Your other expense is less then 10% of your entire portfolio
+            </div>
+        {% endif %}
+
+
+            {% endif %}
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      console.log("hi {{grocery_expense}}")
+
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['Task', 'Hours per Day'],
+          ['Grocery', {{grocery_expense}}],
+          ['Food', {{food_expense}}],
+          ['Clothes', {{clothes_expense}}],
+          ['Others', {{others_expense}}]
+        ]);
+
+        var options = {
+          title: 'My Daily Activities'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+      }
+    </script>
+</body>
+</html>
